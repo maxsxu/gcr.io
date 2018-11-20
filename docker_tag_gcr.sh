@@ -14,7 +14,7 @@
 
 username=jsonbruce
 images=("kube-apiserver:v1.12.1" "kube-controller-manager:v1.12.1" "kube-scheduler:v1.12.1" "kube-proxy:v1.12.1" "pause:3.1" "etcd:3.2.24" "coredns:1.2.2" \
-     	"kubernetes-dashboard-amd64:v1.10.0" "heapster-amd64:v1.5.4")
+     	"kubernetes-dashboard-amd64:v1.10.0" "heapster-amd64:v1.5.4" "heapster-influxdb-amd64:v1.5.2" "heapster-grafana-amd64:v5.0.4")
 
 for image in ${images[@]};
 do
