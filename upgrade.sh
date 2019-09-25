@@ -21,15 +21,14 @@ fi
 
 
 USAGE="
-Usage: $0 -n|--nodes node_list_file [-u|--user user -p|--port port -d|--dir dst_dir] file1 [file2 file3 ...]
+Usage: $0 --kube=v1.16.0 --etcd=3.3.15 --coredns=1.6.2 --pause=3.1
 
-Deploy Files to each node in cluster.
+Upgrade docker images of Kubernetes's core components.
 
-node_list_file                  a file. node name or ip per line
-user                            username of each node
-port                            ssh port of each node(default to 22)
-dst_dir                         directory in node  to be deployed
-file[n]                         file or directory list seperated by blank
+kube                            core components. kube-apiserver/kube-scheduler/kube-controller-manager/kube-proxy
+etcd                            etcd component.
+coredns                         coredns component.
+pause                           pause component.
 "
 
 function usage() {
@@ -138,7 +137,7 @@ do
         else
             result=(${result[@]} $branch)
             version_old=${files[0]:${#branch}+1}
-            cp -r ${files[0]} $file_name
+            mv ${files[0]} $file_name
             sed -i "s/${version_old}/${version_new}/" $file_name/Dockerfile
             git add .
             git commit -m "$file_name"
